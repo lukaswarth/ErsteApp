@@ -1,8 +1,8 @@
 [app]
 
-title = Millionaer
-package.name = millionaer
-package.domain = gsog.millionaer
+title = Taschenrechner
+package.name = taschenrechner
+package.domain = gsog.taschenrechner
 
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
