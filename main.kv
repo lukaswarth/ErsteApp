@@ -1,0 +1,58 @@
+<MyGridLayout>:
+    
+MyGridLayout:
+    cols: 1
+    rows: 5
+    
+    MyGridLayout:
+        cols: 1
+        rows: 1
+        Label:
+            id: label1
+            text: "Klicke auf NEU"
+            font_size: 75
+    MyGridLayout:   
+        cols: 2
+        rows: 1
+        Button:
+            id: button1
+            text: "+"
+            font_size: 75
+            on_press: root.button_plus()
+        Button:
+            id: button2
+            text: "-"
+            font_size: 75
+            on_press: root.button_minus()
+    MyGridLayout:   
+        cols: 2
+        rows: 1
+        Button:
+            id: button3
+            text: "*"
+            font_size: 75
+            on_press: root.button_mal()
+        Button:
+            id: button4
+            text: "/"
+            font_size: 75
+            on_press: root.button_geteilt()
+    MyGridLayout:        
+        cols: 1
+        rows: 1
+        Button:
+            id: button5
+            text: "NEU"
+            font_size: 75
+            on_press: root.button_neu()
+    MyGridLayout:        
+        cols: 2
+        rows: 1
+        Label:
+            id: label2
+            text: ""
+            font_size: 75
+        Label:
+            id: label3
+            text: ""
+            font_size: 75
