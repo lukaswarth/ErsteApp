@@ -1,0 +1,53 @@
+<MyGridLayout>:
+MyGridLayout:
+    cols: 1
+    rows: 7
+    Label:
+        id: label1
+        text: "Ich denke mir eine Zahl zwischen 1 und 1000"
+        
+    MyGridLayout:
+        cols: 2
+        rows: 2
+        Label:
+            id: labels1
+            text: "Score:"
+        
+        Label:
+            id: labels2
+            text: "0"
+            
+        Label:
+            id: labelh1
+            text: "Highscore:"
+            
+        Label:
+            id: labelh2
+            text: "999"
+
+    Slider:
+        id: slider
+        min: 1
+        max: 1000
+        step: 1
+        value: 500
+        orientation: "horizontal"
+        
+    Button:
+        id: button1
+        text: "-"
+        on_press: root.button_m()
+        
+    Label:
+        id: label2
+        text: str(slider.value)
+        
+    Button:
+        id: button2
+        text: "+"
+        on_press: root.button_p()
+        
+    Button:
+        id: button3
+        text: "OK"
+        on_press: root.button_ok()
