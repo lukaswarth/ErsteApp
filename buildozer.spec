@@ -1,8 +1,8 @@
 [app]
 
-title = Monbachtal Kasino
-package.name = kasino
-package.domain = gsog.kasino
+title = Millionaer
+package.name = millionaer
+package.domain = gsog.millionaer
 
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
