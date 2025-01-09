@@ -5,7 +5,7 @@ package.name = millionaer
 package.domain = gsog.millionaer
 
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas,wav,mp3
 
 version = 0.1
 requirements = python3,kivy
