@@ -1,11 +1,13 @@
 [app]
 
-title = Millionaer
-package.name = millionaer
-package.domain = gsog.millionaer
+title = Monbachtal Kasino
+package.name = kasino
+package.domain = gsog.kasino
+icon.adaptive_foreground.filename = /Bilder/Icon.png
+icon.adaptive_background.filename = /Bilder/Icon.png
 
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas,wav,mp3
 
 version = 0.1
 requirements = python3,kivy
