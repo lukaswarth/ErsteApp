@@ -1,0 +1,945 @@
+<Start>:
+    FloatLayout:
+        # Hintergrundbild als Image
+        Image:
+            source: "Bilder/Startbildschirm.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+            pos_hint: {'x': 0, 'y': 0}
+        
+        GridLayout:
+            cols: 1
+            rows: 7
+            Label:
+                id: gruss
+                text: "Willkommen im Kasino!"    
+            Label:
+                text: "Mit welcher Farbe würdest du gerne spielen?"
+                
+            Label:
+                id: farbe
+                text: ""
+                
+            Label:
+                text: ""
+                
+            GridLayout:
+                cols: 5
+                rows: 1
+                Button:
+                    text: "Orange"
+                    color: 1, 0.84, 0, 1
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 1, 0.5, 0, 1
+                    on_press: 
+                        root.orange()
+                        app.change_color([1, 0.5, 0, 1])
+                Button:
+                    text: "Lila"
+                    color: 1, 0.84, 0, 1
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 0.5, 0, 0.5, 1
+                    on_press: 
+                        root.lila()
+                        app.change_color([0.5, 0, 0.5, 1])
+                Button:
+                    text: "Grün"
+                    color: 1, 0.84, 0, 1
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 0, 0.5, 0, 1
+                    on_press: 
+                        root.grün()
+                        app.change_color([0, 0.5, 0, 1])
+                Button:
+                    text: "Weiß"
+                    color: 1, 0.84, 0, 1
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 1, 1, 1, 1
+                    on_press: 
+                        root.weiß()
+                        app.change_color([1, 1, 1, 1])
+                Button:
+                    text: "Schwarz"
+                    color: 1, 0.84, 0, 1
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 0.13, 0.13, 0.13, 1
+                    on_press: 
+                        root.schwarz()
+                        app.change_color([0.13, 0.13, 0.13, 1])
+                
+            Button:
+                text: "Zum Spiel"
+                on_press:
+                    root.manager.transition_to("Kasino")
+
+<Kasino>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld1
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld2
+                color: 1, 0.84, 0, 1
+                text: "10000"
+             
+        Label:
+            id: label1
+        
+        GridLayout:
+            cols: 2
+            rows: 2
+            Label:
+                id: labels1
+                color: 1, 0.84, 0, 1 
+                text: "Score:"
+        
+            Label:
+                id: labels2
+                color: 1, 0.84, 0, 1
+                text: "0"
+            
+            Label:
+                id: labelh1
+                color: 1, 0.84, 0, 1
+                text: "Highscore:"
+            
+            Label:
+                id: labelh2
+                color: 1, 0.84, 0, 1
+                text: "999"
+
+        Slider:
+            id: slider
+            min: 1
+            max: 1000
+            step: 1
+            value: 500
+            orientation: "horizontal"
+            
+        Button:
+            id: button1
+            text: "-"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press: root.button_m()
+        
+        Label:
+            id: label2
+            color: 1, 0.84, 0, 1
+            text: str(slider.value)
+        
+        Button:
+            id: button2
+            text: "+"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press: root.button_p()
+        
+        Button:
+            id: button3
+            text: "OK"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press: root.button_ok()
+            
+        GridLayout:
+            cols:2
+            rows:1
+            Button:
+                text: "GameOne"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameOne"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "GameTwo"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameTwo"
+                    root.manager.transition.direction = "left"
+                          
+<GameOne>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer1
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld3
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld4
+                color: 1, 0.84, 0, 1
+                text: "0"
+        
+        Label:
+            color: 1, 0.84, 0, 1
+            text: "Klicke den Cookie"
+            
+        ProgressBar:
+            id: bar
+            max: 20
+            value: 0
+            
+        Label:
+            text: ""
+            
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                text: ""
+            Button:
+                id: cookie1
+                background_color: 0, 0, 0, 0
+                on_press: root.button_s1()
+            Label:
+                text: ""
+            
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                text: ""
+            Button:
+                id: cookie2
+                background_color: 0, 0, 0, 0
+                on_press: root.button_s1()
+                Image:
+                    source: "Bilder/Cookie.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    fit_mode: "contain"
+                    size: root.width * 0.4, root.height * 0.4
+            Label:
+                text: ""
+                
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                text: ""
+            Button:
+                id: cookie3
+                background_color: 0, 0, 0, 0
+                on_press: root.button_s1()
+            Label:
+                text: ""
+        
+        Label:
+            text: ""
+            
+        GridLayout:
+            cols:2
+            rows:1
+            Button:
+                text: "GameThree"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameThree"
+                    root.manager.transition.direction = "down"
+            Button:
+                text: "zurück"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "Kasino"
+                    root.manager.transition.direction = "left"
+                    
+<GameTwo>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer2
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld5
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld6
+                color: 1, 0.84, 0, 1
+                text: "0"
+                
+        Label:
+            color: 1, 0.84, 0, 1
+            text: "Löse die Rechnung in der gegebenen Zeit"
+            
+        ProgressBar:
+            id: timer1
+            max: 60
+            value: 0
+            
+        Label:
+            text: ""
+            
+        GridLayout:
+            cols: 5
+            rows: 1
+            Label:
+                id: zahl1color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: plus
+                color: 1, 0.84, 0, 1
+                text: "+"
+            Label:
+                id: zahl2
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: gleich1
+                color: 1, 0.84, 0, 1
+                text: "="
+            TextInput:
+                id: ergebnis1
+                text: ""
+                multiline: False
+                 
+        Label:
+            text: ""
+            
+        Button:
+            id: starttimer1
+            text: "Start"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press:
+                root.start_timer1()
+             
+        GridLayout:
+            cols:2
+            rows:1
+            Button:
+                text: "zurück"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "Kasino"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "GameFour"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameFour"
+                    root.manager.transition.direction = "up"
+                
+<GameThree>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer3
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld7
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld8
+                color: 1, 0.84, 0, 1
+                text: "0"
+                
+        Label:
+            color: 1, 0.84, 0, 1
+            text: "Halte den Ladebalken zum richtigen Zeitpunkt auf"
+            
+        Label:
+            text: ""
+        
+        ProgressBar:
+            id: balken1
+            max: 100
+            value: 0
+            
+        ProgressBar:
+            id: balken2
+            max: 100
+            value: 0
+        
+        Button:
+            id: startbalken
+            text: "Start"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press:
+                root.start_balken()
+                
+        Button:
+            id: stoppbalken
+            text: "Stopp"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press:
+                root.stopp_balken()
+        
+        Label:
+            text: ""
+            
+        GridLayout:
+            cols: 2
+            rows: 1
+            Button:
+                text: "zurück"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameOne"
+                    root.manager.transition.direction = "up"
+            Button:
+                text: "GameFive"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameFive"
+                    root.manager.transition.direction = "left"
+                    
+<GameFour>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer4
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld9
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld10
+                color: 1, 0.84, 0, 1
+                text: "0"
+                
+        Label:
+            color: 1, 0.84, 0, 1
+            text: "Löse die Rechnung in der gegebenen Zeit"
+            
+        ProgressBar:
+            id: timer2
+            max: 60
+            value: 0
+            
+        Label:
+            text: ""
+            
+        GridLayout:
+            cols: 5
+            rows: 1
+            Label:
+                id: zahl3
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: minus
+                color: 1, 0.84, 0, 1
+                text: "-"
+            Label:
+                id: zahl4
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: gleich2
+                color: 1, 0.84, 0, 1
+                text: "="
+            TextInput:
+                id: ergebnis2
+                text: ""
+                multiline: False
+                 
+        Label:
+            text: ""
+            
+        Button:
+            id: starttimer2
+            text: "Start"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press:
+                root.start_timer2()
+             
+        GridLayout:
+            cols: 2
+            rows: 1
+            Button:
+                text: "GameSix"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameSix"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "zurück"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameTwo"
+                    root.manager.transition.direction = "down"
+
+<GameFive>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer5
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld11
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $"
+            Label:
+                id: geld12
+                color: 1, 0.84, 0, 1
+                text: ""
+                
+        Label:
+            id: ttt
+            color: 1, 0.84, 0, 1
+            text: "Besiege mich in TikTakToe"
+            
+        Label:
+            text: ""
+            
+        GridLayout:
+            id: grd1
+            cols: 3
+            rows: 1
+        GridLayout:
+            id: grd2
+            cols: 3
+            rows: 1
+        GridLayout:
+            id: grd3
+            cols: 3
+            rows: 1
+    
+        Label:
+            text: ""
+            
+        Button:
+            id: ng
+            text: "Neues Spiel"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press: root.create_ttt()
+            
+        GridLayout:
+            cols: 2
+            rows: 1
+            Button:
+                text: "zurück"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameThree"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "GameSeven"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameSeven"
+                    root.manager.transition.direction = "left"
+
+
+<GameSix>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer6
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld13
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld14
+                color: 1, 0.84, 0, 1
+                text: "0"
+                
+        Label:
+            color: 1, 0.84, 0, 1
+            text: "Löse die Rechnung in der gegebenen Zeit"
+            
+        ProgressBar:
+            id: timer3
+            max: 60
+            value: 0
+            
+        Label:
+            text: ""
+            
+        GridLayout:
+            cols: 5
+            rows: 1
+            Label:
+                id: zahl5
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: mal
+                color: 1, 0.84, 0, 1
+                text: "*"
+            Label:
+                id: zahl6
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: gleich3
+                color: 1, 0.84, 0, 1
+                text: "="
+            TextInput:
+                id: ergebnis3
+                text: ""
+                multiline: False
+                 
+        Label:
+            text: ""
+            
+        Button:
+            id: starttimer3
+            text: "Start"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press:
+                root.start_timer3()
+             
+        GridLayout:
+            cols: 2
+            rows: 1
+            Button:
+                text: "GameEight"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameEight"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "zurück"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameFour"
+                    root.manager.transition.direction = "left"
+                    
+<GameSeven>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer7
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld15
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld16
+                color: 1, 0.84, 0, 1
+                text: ""
+       
+        Label:
+            id: labelm
+            color: 1, 0.84, 0, 1
+            text: "Finde Geld ohne auf Minen zu treten"
+       
+        GridLayout:
+            id: grid1
+            cols: 10
+            rows: 2
+        GridLayout:
+            id: grid2
+            cols: 10
+            rows: 2
+        GridLayout:
+            id: grid3
+            cols: 10
+            rows: 2
+        GridLayout:
+            id: grid4
+            cols: 10
+            rows: 2
+        GridLayout:
+            id: grid5
+            cols: 10
+            rows: 2
+            
+        Button:
+            id: generieren
+            text: "Neues Minenfeld"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press: root.create_minefield()
+        
+        Button:
+            text: "zurück"
+            background_normal: ''
+            background_down: ''
+            background_color: 0.13, 0.13, 0.13, 1
+            color: 1, 0.84, 0, 1
+            on_press: 
+                root.manager.current = "GameFive"
+                root.manager.transition.direction = "right"
+                
+<GameEight>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: app.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+    GridLayout:
+        cols: 1
+        rows: 9
+        GridLayout:
+            cols: 3
+            rows: 1
+            Label:
+                id: schwer8
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geld17
+                color: 1, 0.84, 0, 1
+                text: "Vermögen in $:"
+            Label:
+                id: geld18
+                color: 1, 0.84, 0, 1
+                text: "0"
+                
+        Label:
+            color: 1, 0.84, 0, 1
+            text: "Löse die Rechnung in der gegebenen Zeit"
+            
+        ProgressBar:
+            id: timer4
+            max: 60
+            value: 0
+            
+        Label:
+            text: ""
+            
+        GridLayout:
+            cols: 5
+            rows: 1
+            Label:
+                id: zahl7
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: geteilt
+                color: 1, 0.84, 0, 1
+                text: "/"
+            Label:
+                id: zahl8
+                color: 1, 0.84, 0, 1
+                text: ""
+            Label:
+                id: gleich4
+                color: 1, 0.84, 0, 1
+                text: "="
+            TextInput:
+                id: ergebnis4
+                text: ""
+                multiline: False
+                 
+        Label:
+            text: ""
+            
+        Button:
+            id: starttimer4
+            text: "Start"
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 0.84, 0, 1
+            on_press:
+                root.start_timer4()
+        
+        GridLayout:
+            id: button_container
+            cols: 2
+            rows: 1
+            Button:
+                text: "zurück"
+                background_normal: ''
+                background_down: ''
+                background_color: 0.13, 0.13, 0.13, 1
+                color: 1, 0.84, 0, 1
+                on_press: 
+                    root.manager.current = "GameSix"
+                    root.manager.transition.direction = "left"
