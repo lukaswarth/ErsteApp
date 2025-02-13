@@ -1,0 +1,18 @@
+MyGridLayout:
+    cols: 1
+    rows: 3
+
+    Spinner:
+        id: spinner
+        text: "Cocktailauswahl"
+        values: root.values
+        background_color: "red"
+                               
+    Button:
+        id: button
+        text: 'Finde Zutaten'
+        on_press: app.callback(self)
+
+    Label:
+        id: label
+        text: "gefundene Zutaten:"
