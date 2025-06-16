@@ -10,13 +10,13 @@ source.include_exts = py,png,jpg,kv,atlas,wav,mp3,db
 version = 0.1
 requirements = python3,kivy,sqlite3
 
-#icon.filename = %(source.dir)s/Bilder/icon.png
-#presplash.filename = %(source.dir)s/Bilder/icon.png
+icon.filename = %(source.dir)s/Bilder/icon.png
+presplash.filename = %(source.dir)s/Bilder/icon.png
 
 orientation = portrait
 fullscreen = 0
 android.archs = arm64-v8a
-p4a.branch = release-2022.12.20
+p4a.branch = main
 
 # iOS specific
 ios.kivy_ios_url = https://github.com/kivy/kivy-ios
