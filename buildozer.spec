@@ -10,8 +10,8 @@ source.include_exts = py,png,jpg,kv,atlas,wav,mp3,db
 version = 0.1
 requirements = python3,kivy,sqlite3
 
-icon.filename = %(source.dir)s/Bilder/icon.png
-presplash.filename = %(source.dir)s/Bilder/icon.png
+#icon.filename = %(source.dir)s/Bilder/icon.png
+#presplash.filename = %(source.dir)s/Bilder/icon.png
 
 orientation = portrait
 fullscreen = 0
