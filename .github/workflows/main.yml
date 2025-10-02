@@ -11,6 +11,9 @@ jobs:
   build:
     name: Build for Android
     runs-on: ubuntu-latest
+    env:
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+
 
     steps:
       - name: Checkout
