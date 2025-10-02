@@ -35,6 +35,11 @@ jobs:
           yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
           $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "build-tools;30.0.3" "platform-tools" "platforms;android-30"
 
+      - name: Link sdkmanager to expected location
+        run: |
+          mkdir -p $HOME/.buildozer/android/platform/android-sdk/tools/bin
+          ln -s $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager $HOME/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
+
       - name: Link Build-Tools manually
         run: |
           mkdir -p $HOME/.buildozer/android/platform/android-sdk/build-tools
