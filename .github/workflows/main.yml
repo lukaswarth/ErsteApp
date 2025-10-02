@@ -1,33 +1,29 @@
-name: build
+name: Build APK
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
-
 jobs:
-# Build job. Builds app for Android with Buildozer test
   build:
     name: Build for Android
     runs-on: ubuntu-latest
     env:
       JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
 
-
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
+      - name: Build APK with Buildozer
+        uses: r4stl1n/buildozer-action@v1.2.0
         with:
-          workdir: .
-          buildozer_version: stable
+          command: android debug
 
-      - name: Upload artifacts
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: package
-          path: ${{ steps.buildozer.outputs.filename }}
+          name: ErsteApp
+          path: bin/*.apk
