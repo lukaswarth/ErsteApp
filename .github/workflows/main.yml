@@ -18,12 +18,19 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install -y zip unzip openjdk-17-jdk python3-pip build-essential
+          sudo apt install -y zip unzip openjdk-17-jdk python3-pip build-essential wget
           pip install cython
           pip install buildozer
 
-      - name: Accept Android SDK Licenses and Install Build Tools
+      - name: Install Android SDK
         run: |
+          mkdir -p $HOME/android-sdk/cmdline-tools
+          cd $HOME/android-sdk/cmdline-tools
+          wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O tools.zip
+          unzip tools.zip
+          mv cmdline-tools latest
+          export ANDROID_HOME=$HOME/android-sdk
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
           yes | sdkmanager --licenses
           sdkmanager "build-tools;36.1.0" "platform-tools" "platforms;android-36"
 
