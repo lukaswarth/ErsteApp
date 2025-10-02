@@ -1,5 +1,5 @@
 [app]
-
+android.build_tools_version = 30.0.3
 title = Monbachtal Kasino
 package.name = kasino
 package.domain = gsog.kasino
