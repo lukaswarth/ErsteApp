@@ -6,9 +6,10 @@ package.domain = gsog.kasino
 
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,wav,mp3,db
+source.include_patterns = Audios/*,Bilder/*
 
 version = 0.1
-requirements = python3,kivy,sqlite3
+requirements = python3,kivy
 
 #icon.filename = %(source.dir)s/Bilder/icon.png
 #presplash.filename = %(source.dir)s/Bilder/icon.png
