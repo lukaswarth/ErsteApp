@@ -2,9 +2,9 @@ name: Build APK
 
 on:
   push:
-    branches: [ main ]
+    branches: [ with_copilot ]
   pull_request:
-    branches: [ main ]
+    branches: [ with_copilot ]
 
 jobs:
   build:
@@ -18,14 +18,23 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install -y zip unzip openjdk-17-jdk python3-pip build-essential
+          sudo apt install -y zip unzip openjdk-17-jdk python3-pip build-essential wget
           pip install cython
           pip install buildozer
 
-      - name: Accept Android SDK Licenses and Install Build Tools
+      - name: Install Android SDK and Accept Licenses
         run: |
-          yes | sdkmanager --licenses
-          sdkmanager "build-tools;36.1.0" "platform-tools" "platforms;android-36"
+          mkdir -p $HOME/android-sdk/cmdline-tools
+          cd $HOME/android-sdk/cmdline-tools
+          wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O tools.zip
+          unzip tools.zip -d $HOME/android-sdk/cmdline-tools
+          mkdir -p $HOME/android-sdk/cmdline-tools/latest
+          mv $HOME/android-sdk/cmdline-tools/cmdline-tools/* $HOME/android-sdk/cmdline-tools/latest/
+          export ANDROID_HOME=$HOME/android-sdk
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+          echo "sdkmanager path: $(which sdkmanager)"
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3" "platform-tools" "platforms;android-30"
 
       - name: Build APK
         run: |
